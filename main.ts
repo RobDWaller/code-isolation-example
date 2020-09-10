@@ -1,4 +1,6 @@
-import { Application, Router } from "https://deno.land/x/oak@v5.3.1/mod.ts";
+import { Application, Router } from "https://deno.land/x/oak@v6.1.0/mod.ts";
+import { adults } from "./src/complicated/people.ts";
+import { adults as adultsIs } from "./src/isolated/people/mod.ts";
 
 const router = new Router();
 router
@@ -6,10 +8,10 @@ router
     context.response.body = "Hello world!";
   })
   .get("/complicated", (context) => {
-    context.response.body = "Complicated";
+    context.response.body = adults();
   })
   .get("/isolated", (context) => {
-    context.response.body = "Isolated";
+    context.response.body = adultsIs();
   });
 
 const app = new Application();
